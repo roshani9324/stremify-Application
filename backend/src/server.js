@@ -27,7 +27,7 @@ connectDB()
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "stremify-application.vercel.app"],
+    origin: ["http://localhost:5173", "http://stremify-application.vercel.app"],
     credentials: true,
   }),
 );
