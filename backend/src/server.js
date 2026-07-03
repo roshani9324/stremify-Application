@@ -29,7 +29,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://stremify-application.vercel.app/",
+      "https://stremify-application.vercel.app",
     ],
     credentials: true,
   }),
