@@ -8,6 +8,9 @@ import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
 import chatRoutes from "./routes/chat.route.js";
 
+import dns from "node:dns";
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
+
 import { connectDB } from "./lib/db.js";
 
 const app = express();
@@ -25,8 +28,7 @@ connectDB()
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "http://team-video-calling-chat-frontend.vercel.app/api", // your frontend domain
+      "http://localhost:5173"
     ],
     credentials: true,
   })
@@ -48,26 +50,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
-// let isConnected = false;
-// async function connectToMongoDB(){
-//   try{
-//     await mongoose.connect(process.env.MONGO_URI),{
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     };
-//     isConnected = true;
-//     console.log("Connected to MongoDB");
-//   } catch(error){
-//     console.error("Error connecting to MongoDB:", error);
-//   }
-// }
-
-// app.use((req,res,next)=>{
-//   if(!isConnected){
-//     connectToMongoDB();
-//   }
-//   next();
-// })
 
 app.get("/", (req, res) => {
   res.send({
